@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>YouTube HTML Converter</title>
+  <script>
+    function loadjQuery(callback) {
+      if (typeof jQuery === 'undefined') {
+        var script = document.createElement('script');
+        script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js';
+        script.onload = callback;
+        document.head.appendChild(script);
+      } else {
+        callback();
+      }
+    }
+
+    function convertVideo() {
+      var youtubeLink = $('#youtubeLink').val();
+      var videoId = youtubeLink.split('v=')[1];
+      var streamLink = 'https://www.youtube.com/watch?v=' + videoId;
+
+      $('#streamLink').val(streamLink);
+    }
+
+    function init() {
+      loadjQuery(function() {
+        console.log('jQuery geladen!');
+      });
+    }
+  </script>
+</head>
+<body onload="init()">
+  <h1 style="text-align: center;">YouTube HTML Converter</h1>
+  
+  <div style="text-align: center;">
+    <input type="text" id="youtubeLink" placeholder="Plak de YouTube-link hier">
+    <button onclick="convertVideo()">Converteer</button>
+  </div>
+  
+  <div style="text-align: center; margin-top: 20px;">
+    <input type="text" id="streamLink" readonly>
+  </div>
+</body>
+</html>
